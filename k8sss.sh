@@ -17,7 +17,12 @@ apt install kubeadm=1.20.0-00 kubectl=1.20.0-00 kubelet=1.20.0-00 -y
 ##To connect with cluster execute below commands on master node and worker node respectively
 --------------------------------------------- Master Node -------------------------------------------------- 
 sudo su
-kubeadm init
+kubeadm init --pod-network-cidr=10.32.0.0/12  #if you are using weave network
+
+OR
+
+kubeadm init --pod-network-cidr=10.244.0.0/16 # if you are using fannel network
+
 
   mkdir -p $HOME/.kube
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
